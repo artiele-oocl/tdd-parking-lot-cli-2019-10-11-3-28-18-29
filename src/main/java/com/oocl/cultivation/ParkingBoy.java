@@ -14,7 +14,7 @@ public class ParkingBoy {
     }
 
     public Car fetch(ParkingTicket ticket) {
-        if (ticket == null) throw new NullPointerException("Unrecognized parking ticket.");
+        if (ticket == null) throw new NullPointerException("Please provide your parking ticket.");
         return parkingLot.fetchCar(ticket);
     }
 

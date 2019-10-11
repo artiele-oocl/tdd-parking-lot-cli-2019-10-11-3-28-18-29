@@ -24,7 +24,8 @@ public class ParkingLot {
     }
 
     public ParkingTicket addCar(Car car) {
-        if (getAvailableParkingPosition() > -1 || cars.containsValue(car)) return null;
+        if (cars.containsValue(car)) return null;
+        if (getAvailableParkingPosition() > -1) throw new NullPointerException("Not enough position.");
         ParkingTicket parkingTicket = new ParkingTicket();
         cars.put(parkingTicket,car);
         return parkingTicket;

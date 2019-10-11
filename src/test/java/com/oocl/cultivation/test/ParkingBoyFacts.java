@@ -76,7 +76,7 @@ class ParkingBoyFacts {
     }
 
     @Test
-    void should_return_null_when_ticket_has_already_been_used() {
+    void should_return_errMsg_when_ticket_has_already_been_used() {
         Car myCar = new Car();
         ParkingLot parkingLot = new ParkingLot();
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
@@ -86,7 +86,7 @@ class ParkingBoyFacts {
         assertThrows(NullPointerException.class, ()->parkingBoy.fetch(ticket), parkingBoy.getLastErrorMessage());
     }
     @Test
-    void should_return_null_when_no_parking_space_available() {
+    void should_return_errMsg_when_no_parking_space_available() {
         ParkingLot parkingLot = new ParkingLot();
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
         for (int i = 0; i < 10; i++) {
@@ -94,9 +94,8 @@ class ParkingBoyFacts {
         }
 
         Car myCar = new Car();
-        ParkingTicket ticket = parkingBoy.park(myCar);
 
-        assertNull(ticket);
+        assertThrows(NullPointerException.class, ()->parkingBoy.park(myCar), parkingBoy.getLastErrorMessage());
     }
     @Test
     void should_return_null_when_parkingboy_park_an_already_parked_car() {
