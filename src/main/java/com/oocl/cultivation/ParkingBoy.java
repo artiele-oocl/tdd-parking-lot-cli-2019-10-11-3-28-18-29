@@ -14,7 +14,8 @@ public class ParkingBoy {
     }
 
     public Car fetch(ParkingTicket ticket) {
-        return parkingLot.fetchCar(ticket);
+        Car fetchedCar = parkingLot.fetchCar(ticket);
+        return  fetchedCar != null ? fetchedCar : null;
     }
 
     public String getLastErrorMessage() {

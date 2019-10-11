@@ -21,7 +21,7 @@ class ParkingBoyFacts {
     }
 
     @Test
-    void should_return_ticket_when_parkingBoy_fetch_car() {
+    void should_return_car_when_parkingBoy_fetch_car() {
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot();
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
@@ -29,7 +29,7 @@ class ParkingBoyFacts {
 
         Car fetchedCar = parkingBoy.fetch(ticket);
 
-        assertNotNull(fetchedCar);
+        assertEquals(car, fetchedCar);
     }
 
     @Test
@@ -61,5 +61,33 @@ class ParkingBoyFacts {
         Car actual = parkingBoy.fetch(ticket);
 
         assertEquals(myCar, actual);
+    }
+
+    @Test
+    void should_return_null_when_null_ticket_provided() {
+        Car myCar = new Car();
+        Car otherCar1 = new Car();
+        Car otherCar2 = new Car();
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        parkingBoy.park(otherCar1);
+        parkingBoy.park(otherCar2);
+
+        Car actual = parkingBoy.fetch(null);
+
+        assertEquals(null, actual);
+    }
+
+    @Test
+    void should_return_null_when_ticket_has_already_been_used() {
+        Car myCar = new Car();
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        ParkingTicket ticket = parkingBoy.park(myCar);
+        parkingBoy.fetch(ticket);
+
+        Car actual = parkingBoy.fetch(ticket);
+
+        assertEquals(null, actual);
     }
 }
