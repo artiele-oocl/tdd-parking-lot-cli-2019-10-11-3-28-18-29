@@ -24,6 +24,7 @@ public class ParkingLot {
     }
 
     public ParkingTicket addCar(Car car) {
+        if (getAvailableParkingPosition() > -1 || cars.containsValue(car)) return null;
         ParkingTicket parkingTicket = new ParkingTicket();
         cars.put(parkingTicket,car);
         return parkingTicket;

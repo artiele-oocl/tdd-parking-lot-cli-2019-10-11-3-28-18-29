@@ -65,7 +65,6 @@ class ParkingBoyFacts {
 
     @Test
     void should_return_null_when_null_ticket_provided() {
-        Car myCar = new Car();
         Car otherCar1 = new Car();
         Car otherCar2 = new Car();
         ParkingLot parkingLot = new ParkingLot();
@@ -75,7 +74,7 @@ class ParkingBoyFacts {
 
         Car actual = parkingBoy.fetch(null);
 
-        assertEquals(null, actual);
+        assertNull(actual);
     }
 
     @Test
@@ -88,6 +87,41 @@ class ParkingBoyFacts {
 
         Car actual = parkingBoy.fetch(ticket);
 
-        assertEquals(null, actual);
+        assertNull(actual);
+    }
+    @Test
+    void should_return_null_when_no_parking_space_available() {
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        for (int i = 0; i < 10; i++) {
+            parkingBoy.park(new Car());
+        }
+
+        Car myCar = new Car();
+        ParkingTicket ticket = parkingBoy.park(myCar);
+
+        assertNull(ticket);
+    }
+    @Test
+    void should_return_null_when_parkingboy_park_an_already_parked_car() {
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+
+        Car myCar = new Car();
+        parkingBoy.park(myCar);
+        ParkingTicket ticket = parkingBoy.park(myCar);
+
+        assertNull(ticket);
+    }
+    @Test
+    void should_return_null_when_parkingboy_park_nonexistent_car() {
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+
+        Car myCar = new Car();
+        parkingBoy.park(myCar);
+        ParkingTicket ticket = parkingBoy.park(myCar);
+
+        assertNull(ticket);
     }
 }
