@@ -118,9 +118,8 @@ class ParkingBoyFacts {
         ParkingLot parkingLot = new ParkingLot();
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
 
-        Car myCar = new Car();
-        parkingBoy.park(myCar);
-        ParkingTicket ticket = parkingBoy.park(myCar);
+        parkingBoy.park(null);
+        ParkingTicket ticket = parkingBoy.park(null);
 
         assertNull(ticket);
     }
