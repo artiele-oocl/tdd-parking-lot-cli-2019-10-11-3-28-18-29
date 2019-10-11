@@ -10,12 +10,12 @@ public class ParkingBoy {
     }
 
     public ParkingTicket park(Car car) {
-        return parkingLot.getAvailableParkingPosition() < 0 ? parkingLot.addCar(car) : null;
+        return parkingLot.addCar(car);
     }
 
     public Car fetch(ParkingTicket ticket) {
-        Car fetchedCar = parkingLot.fetchCar(ticket);
-        return fetchedCar;
+        if (ticket == null) throw new NullPointerException("Unrecognized parking ticket.");
+        return parkingLot.fetchCar(ticket);
     }
 
     public String getLastErrorMessage() {

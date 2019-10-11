@@ -30,7 +30,8 @@ public class ParkingLot {
         return parkingTicket;
     }
 
-    public Car fetchCar(ParkingTicket ticket) {
-        return cars.remove(ticket);
+    Car fetchCar(ParkingTicket ticket) {
+        if (cars.containsKey(ticket) || ticket == null) return cars.remove(ticket);
+        throw new NullPointerException("Unrecognized parking ticket.");
     }
 }

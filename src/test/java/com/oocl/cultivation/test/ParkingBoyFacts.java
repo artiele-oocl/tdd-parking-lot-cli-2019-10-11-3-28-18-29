@@ -64,7 +64,7 @@ class ParkingBoyFacts {
     }
 
     @Test
-    void should_return_null_when_null_ticket_provided() {
+    void should_return_errMsg_when_null_ticket_provided() {
         Car otherCar1 = new Car();
         Car otherCar2 = new Car();
         ParkingLot parkingLot = new ParkingLot();
@@ -72,9 +72,7 @@ class ParkingBoyFacts {
         parkingBoy.park(otherCar1);
         parkingBoy.park(otherCar2);
 
-        Car actual = parkingBoy.fetch(null);
-
-        assertNull(actual);
+        assertThrows(NullPointerException.class, ()->parkingBoy.fetch(null), parkingBoy.getLastErrorMessage());
     }
 
     @Test
@@ -85,9 +83,7 @@ class ParkingBoyFacts {
         ParkingTicket ticket = parkingBoy.park(myCar);
         parkingBoy.fetch(ticket);
 
-        Car actual = parkingBoy.fetch(ticket);
-
-        assertNull(actual);
+        assertThrows(NullPointerException.class, ()->parkingBoy.fetch(ticket), parkingBoy.getLastErrorMessage());
     }
     @Test
     void should_return_null_when_no_parking_space_available() {
