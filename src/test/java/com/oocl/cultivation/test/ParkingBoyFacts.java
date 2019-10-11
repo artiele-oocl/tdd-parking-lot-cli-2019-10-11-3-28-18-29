@@ -10,7 +10,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ParkingBoyFacts {
     @Test
-    void write_your_first_test() {
+    void should_return_parkingTicket_when_parkingBoy_park_car_in_parkingLot() {
 
+        String result = "Parking ticket returned.";
+        assertEquals(expected, result);
     }
 }
