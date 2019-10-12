@@ -20,7 +20,7 @@ public class ParkingBoy {
     }
 
     public ParkingTicket park(Car car) {
-        return getAvailableParkingLot(car).addCar(car);
+        return getChosenParkingLot(car).addCar(car);
     }
 
     public Car fetch(ParkingTicket ticket) {
@@ -35,7 +35,7 @@ public class ParkingBoy {
         return carParkingLotAssociation.get(car);
     }
 
-    ParkingLot getAvailableParkingLot(Car car) {
+    ParkingLot getChosenParkingLot(Car car) {
         if (parkingLots != null) {
             for (ParkingLot parkingLot : parkingLots) {
                 if (parkingLot.getAvailableParkingPosition() < 0) {

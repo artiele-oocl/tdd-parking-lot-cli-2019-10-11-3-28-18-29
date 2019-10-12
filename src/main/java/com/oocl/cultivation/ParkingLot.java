@@ -15,15 +15,16 @@ public class ParkingLot {
         this.capacity = capacity;
     }
 
-    public int getAvailableParkingPosition() {
+    int getAvailableParkingPosition() {
         return cars.size() - capacity;
     }
 
     public int getCarsCount() {
         return cars.size();
     }
+    private int getCapacity() { return capacity; }
 
-    public ParkingTicket addCar(Car car) {
+    ParkingTicket addCar(Car car) {
         if (cars.containsValue(car)) return null;
         if (getAvailableParkingPosition() > -1) throw new NullPointerException("Not enough position.");
         ParkingTicket parkingTicket = new ParkingTicket();
@@ -35,5 +36,9 @@ public class ParkingLot {
         if (ticket == null) throw new NullPointerException("Please provide your parking ticket.");
         if (cars.containsKey(ticket)) return cars.remove(ticket);
         throw new NullPointerException("Unrecognized parking ticket.");
+    }
+
+    int calculateAvailablePositionRate() {
+        return getAvailableParkingPosition() / getCapacity();
     }
 }

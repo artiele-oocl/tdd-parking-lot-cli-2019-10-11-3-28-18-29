@@ -38,10 +38,11 @@ class ParkingBoyFacts {
         Car car2 = new Car();
         Car car3 = new Car();
         ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
 
-        parkingLot.addCar(car1);
-        parkingLot.addCar(car2);
-        parkingLot.addCar(car3);
+        parkingBoy.park(car1);
+        parkingBoy.park(car2);
+        parkingBoy.park(car3);
         int actual = parkingLot.getCarsCount();
 
         assertEquals(3, actual);
@@ -212,10 +213,11 @@ class ParkingBoyFacts {
         Car car2 = new Car();
         Car car3 = new Car();
         ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
 
-        parkingLot.addCar(car1);
-        parkingLot.addCar(car2);
-        parkingLot.addCar(car3);
+        parkingBoy.park(car1);
+        parkingBoy.park(car2);
+        parkingBoy.park(car3);
         int actual = parkingLot.getCarsCount();
 
         assertEquals(3, actual);
