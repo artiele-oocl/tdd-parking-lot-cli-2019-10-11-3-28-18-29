@@ -1,9 +1,6 @@
 package com.oocl.cultivation.test;
 
-import com.oocl.cultivation.Car;
-import com.oocl.cultivation.ParkingBoy;
-import com.oocl.cultivation.ParkingLot;
-import com.oocl.cultivation.ParkingTicket;
+import com.oocl.cultivation.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -151,5 +148,39 @@ class ParkingBoyFacts {
         parkingBoy.park(myCar);
 
         assertSame(parkingLot2, parkingBoy.getCarParkingLotAssociation(myCar));
+    }
+    @Test
+    void should_park_on_second_parking_lot_when_second_parking_lot_has_more_available_positions() {
+        ParkingLot parkingLot1 = new ParkingLot();
+        ParkingLot parkingLot2 = new ParkingLot();
+        List<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(parkingLot1);
+        parkingLots.add(parkingLot2);
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLots);
+        for (int i = 0; i < 7; i++) {
+            smartParkingBoy.park(new Car());
+        }
+
+        Car myCar = new Car();
+        smartParkingBoy.park(myCar);
+
+        assertSame(parkingLot2, smartParkingBoy.getCarParkingLotAssociation(myCar));
+    }
+    @Test
+    void should_park_on_first_parking_lot_when_both_parking_lots_have_equal_available_positions() {
+        ParkingLot parkingLot1 = new ParkingLot();
+        ParkingLot parkingLot2 = new ParkingLot();
+        List<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(parkingLot1);
+        parkingLots.add(parkingLot2);
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLots);
+        for (int i = 0; i < 8; i++) {
+            smartParkingBoy.park(new Car());
+        }
+
+        Car myCar = new Car();
+        smartParkingBoy.park(myCar);
+
+        assertSame(parkingLot1, smartParkingBoy.getCarParkingLotAssociation(myCar));
     }
 }

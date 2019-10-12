@@ -6,9 +6,9 @@ import java.util.Map;
 
 public class ParkingBoy {
 
-    private List<ParkingLot> parkingLots;
-    private Map<Car,ParkingLot> carParkingLotAssociation = new HashMap<>();
-    private ParkingLot parkingLot;
+    List<ParkingLot> parkingLots;
+    Map<Car,ParkingLot> carParkingLotAssociation = new HashMap<>();
+    ParkingLot parkingLot;
     private String lastErrorMessage;
 
     public ParkingBoy(ParkingLot parkingLot) {
@@ -35,7 +35,7 @@ public class ParkingBoy {
         return carParkingLotAssociation.get(car);
     }
 
-    private ParkingLot getAvailableParkingLot(Car car) {
+    ParkingLot getAvailableParkingLot(Car car) {
         if (parkingLots != null) {
             for (ParkingLot parkingLot : parkingLots) {
                 if (parkingLot.getAvailableParkingPosition() < 0) {
