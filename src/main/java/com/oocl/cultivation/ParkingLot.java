@@ -32,7 +32,8 @@ public class ParkingLot {
     }
 
     Car fetchCar(ParkingTicket ticket) {
-        if (cars.containsKey(ticket) || ticket == null) return cars.remove(ticket);
+        if (ticket == null) throw new NullPointerException("Please provide your parking ticket.");
+        if (cars.containsKey(ticket)) return cars.remove(ticket);
         throw new NullPointerException("Unrecognized parking ticket.");
     }
 }

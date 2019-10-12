@@ -63,7 +63,7 @@ class ParkingBoyFacts {
 
         Car actual = parkingBoy.fetch(ticket);
 
-        assertEquals(myCar, actual);
+        assertSame(myCar, actual);
     }
 
     @Test
@@ -133,6 +133,23 @@ class ParkingBoyFacts {
         Car myCar = new Car();
         parkingBoy.park(myCar);
 
-        assertEquals(parkingLot1, parkingBoy.getCarParkingLotAssociation(myCar));
+        assertSame(parkingLot1, parkingBoy.getCarParkingLotAssociation(myCar));
+    }
+    @Test
+    void should_park_on_second_parking_lot_when_first_parking_lot_is_full() {
+        ParkingLot parkingLot1 = new ParkingLot();
+        ParkingLot parkingLot2 = new ParkingLot();
+        List<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(parkingLot1);
+        parkingLots.add(parkingLot2);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
+        for (int i = 0; i < 15; i++) {
+            parkingBoy.park(new Car());
+        }
+
+        Car myCar = new Car();
+        parkingBoy.park(myCar);
+
+        assertSame(parkingLot2, parkingBoy.getCarParkingLotAssociation(myCar));
     }
 }
