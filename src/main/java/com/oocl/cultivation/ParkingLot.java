@@ -22,7 +22,7 @@ public class ParkingLot {
     public int getCarsCount() {
         return cars.size();
     }
-    private int getCapacity() { return capacity; }
+    int getCapacity() { return capacity; }
 
     ParkingTicket addCar(Car car) {
         if (cars.containsValue(car)) return null;
@@ -38,7 +38,4 @@ public class ParkingLot {
         throw new NullPointerException("Unrecognized parking ticket.");
     }
 
-    int calculateAvailablePositionRate() {
-        return getAvailableParkingPosition() / getCapacity();
-    }
 }
