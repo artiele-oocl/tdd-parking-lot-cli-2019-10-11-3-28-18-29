@@ -6,6 +6,9 @@ import com.oocl.cultivation.ParkingLot;
 import com.oocl.cultivation.ParkingTicket;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ParkingBoyFacts {
@@ -117,5 +120,19 @@ class ParkingBoyFacts {
         ParkingTicket ticket = parkingBoy.park(null);
 
         assertNull(ticket);
+    }
+    @Test
+    void should_park_on_first_parking_lot_when_first_parking_lot_isnot_yet_full() {
+        ParkingLot parkingLot1 = new ParkingLot();
+        ParkingLot parkingLot2 = new ParkingLot();
+        List<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(parkingLot1);
+        parkingLots.add(parkingLot2);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
+
+        Car myCar = new Car();
+        parkingBoy.park(myCar);
+
+        assertEquals(parkingLot1, parkingBoy.getCarParkingLotAssociation(myCar));
     }
 }
